@@ -11,13 +11,24 @@ class MarvelService {
         return await res.json();            // возвращает в формате js
     }
 
-    getAllCharacters = () => {  // получить всех персонажей
-        return this.getRosource(`${this._apiBase}characters?limit=9&offset=210&${this._apiKey}`);
-        
+    getAllCharacters = async () => {  // получить всех персонажей
+        const res = await this.getRosource(`${this._apiBase}characters?limit=9&offset=210&${this._apiKey}`);
+        return res.data.results.map(this._transformCharacter);
     }
 
-    getCharacter = (id) => {  // получить одного персонажа
-        return this.getRosource(`${this._apiBase}characters/${id}?${this._apiKey}`);
+    getCharacter = async (id) => {  // получить одного персонажа
+        const res = await this.getRosource(`${this._apiBase}characters/${id}?${this._apiKey}`);
+        return this._transformCharacter(res.data.results[0]);
+    }
+
+    _transformCharacter = (char) => {
+        return {
+            name: char.name,                                                    // имя
+            description: char.description,                                      // описание
+            thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,    // изображение
+            homepage: char.urls[0].url,                                         // кнопка
+            wiki: char.urls[1].url                                              // кнопка
+        }
     }
 
 }
