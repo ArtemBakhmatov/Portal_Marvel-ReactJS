@@ -10,10 +10,6 @@ import mjolnir from '../../resources/img/mjolnir.png';
 
 
 class RandomChar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.upDateChar();  // вызывать функцию в конструкторе грубая ошибка, исправим позже, в консоли баг
-    }
     state = {
         char: {},
         loading: true,
@@ -21,6 +17,10 @@ class RandomChar extends React.Component {
     }
 
     marvelService = new MarvelService();
+
+    componentDidMount() {  // компонент появился на странице
+        this.upDateChar();
+    }
 
     onCharLoaded = (char) => {  // персонаж загрузился
         this.setState({
