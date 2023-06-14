@@ -7,8 +7,6 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import './randomChar.scss';
 
 import mjolnir from '../../resources/img/mjolnir.png';
-
-
 class RandomChar extends React.Component {
     state = {
         char: {},
@@ -30,6 +28,12 @@ class RandomChar extends React.Component {
         });
     }
 
+    onCharLoading = () => {
+        this.setState({
+            loading: true
+        })
+    }
+
     onError = () => {           // выводится ошибка
         this.setState({
             loading: false,
@@ -40,6 +44,7 @@ class RandomChar extends React.Component {
     upDateChar = () => {   // обновление персонажа
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         // const id = целоеЧисло(Рандом * (макс.число - мин.число) + мин.число);
+        this.onCharLoading();
         this.marvelService  
             .getCharacter(id)
             .then(this.onCharLoaded)
@@ -65,7 +70,9 @@ class RandomChar extends React.Component {
                         Or choose another one
                     </p>
                     <button className="button button__main">
-                        <div className="inner">try it</div>
+                        <div 
+                            onClick={this.upDateChar}
+                            className="inner">try it</div>
                     </button>
                     <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
                 </div>
@@ -76,7 +83,7 @@ class RandomChar extends React.Component {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
-    
+
     let imgStyle = {objectFit: 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {objectFit: 'contain'};
