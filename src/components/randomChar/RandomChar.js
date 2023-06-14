@@ -81,7 +81,7 @@ const View = ({char}) => {
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {objectFit: 'contain'};
     }
-
+    
     return (
         <div className="randomchar__block">
             <img 
