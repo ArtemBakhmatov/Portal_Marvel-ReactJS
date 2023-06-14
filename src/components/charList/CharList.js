@@ -10,23 +10,43 @@ class CharList extends React.Component {
     state = {
         charList: [],
         loading: true,
-        error: false
+        error: false,
+        newItemLoading: false,
+        offset: 1541,
+        charEnded: false
     }
 
     marvelService = new MarvelService();
 
     componentDidMount() {               // компонент появился на странице
-        this.foo.bar = 0; // дабавил фейковую ошибку для проверки как поведет себя страница
-        this.marvelService.getAllCharacters()
+        this.onRequest();
+    }
+
+    onRequest = (offset) => {           // пользователь кликает на кнопку 'LOAD MORE'
+        this.onCharListLoading();
+        this.marvelService.getAllCharacters(offset)
             .then(this.onCharListLoaded)
             .catch(this.onError);
     }
 
-    onCharListLoaded = (charList) => {  // список персонажей загрузился
+    onCharListLoading() {               // загружается новый список персонажей при клике 'LOAD MORE'
         this.setState({
-            charList: charList,
-            loading: false
+            newItemLoading: true
         });
+    }
+
+    onCharListLoaded = (newCharList) => {           // список персонажей загрузился
+        let ended = false;
+        if (newCharList.length < 9) {
+            ended = true;
+        }
+        this.setState(({offset, charList}) => ({    // аргументы взяты из state
+            charList: [...charList, ...newCharList],  
+            loading: false,
+            newItemLoading: false,
+            offset: offset + 9,
+            charEnded: ended
+        }));
     }
 
     onError = () => {                   // выводится ошибка
@@ -64,7 +84,7 @@ class CharList extends React.Component {
     }
 
     render() {
-        const {charList, loading, error} = this.state;
+        const {charList, loading, error, newItemLoading, offset, charEnded} = this.state;
         const items = this.renderItems(charList);
 
         const errorMessage = error ? <ErrorMessage /> : null;
@@ -76,7 +96,12 @@ class CharList extends React.Component {
                 {errorMessage}
                 {spinner}
                 {content}
-                <button className="button button__main button__long">
+                <button 
+                    disabled={newItemLoading}
+                    style={{'display': charEnded ? 'none' : 'block'}}
+                    onClick={() => this.onRequest(offset)}
+                    className="button button__main button__long"
+                >
                     <div className="inner">load more</div>
                 </button>
             </div>
