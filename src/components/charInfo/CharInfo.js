@@ -38,6 +38,7 @@ class CharInfo extends React.Component {
             .getCharacter(charId)
             .then(this.onCharLoaded)
             .catch(this.onError);
+        this.foo.bar = 0; // дабавил фейковую ошибку для проверки как поведет себя страница
     }
 
     onCharLoaded = (char) => {

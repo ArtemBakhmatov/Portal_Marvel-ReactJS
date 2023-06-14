@@ -16,6 +16,7 @@ class CharList extends React.Component {
     marvelService = new MarvelService();
 
     componentDidMount() {               // компонент появился на странице
+        this.foo.bar = 0; // дабавил фейковую ошибку для проверки как поведет себя страница
         this.marvelService.getAllCharacters()
             .then(this.onCharListLoaded)
             .catch(this.onError);
