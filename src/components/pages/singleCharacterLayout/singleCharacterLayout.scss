@@ -21,3 +21,21 @@
         margin-top: 25px;
     }
 }
+
+@media (max-width: 1200px) {
+    .single-comic {
+        &__char-img {
+            width: 240px;
+            height: 293px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .single-comic {
+        &__char-img {
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+    }
+}

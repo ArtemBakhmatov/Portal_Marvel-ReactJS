@@ -7,6 +7,7 @@
     column-gap: 50px;
     align-items: start;
     &__img {
+        border-radius: 10px;
         width: 293px;
         height: 450px;
     }
@@ -34,6 +35,38 @@
         line-height: 24px;
         &:hover {
             color: $main-color;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .single-comic {
+        grid-template-columns: 293px 460px auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .single-comic {
+        grid-template-columns: 240px 330px auto;
+        grid-column-gap: 30px;
+        column-gap: 30px;
+        &__img {
+            border-radius: 10px;
+            width: 240px;
+            height: 400px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .single-comic {
+        display: flex;
+        flex-direction: column;
+        &__img {
+            margin: 0 auto 20px auto;
+        }
+        &__back {
+            line-height: 50px;
         }
     }
 }

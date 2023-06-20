@@ -5,6 +5,8 @@
     grid-template-columns: repeat(2, 50%);
     align-items: center;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    overflow: hidden;
     &__block {
         padding: 40px 35px;
         display: grid;
@@ -12,6 +14,7 @@
         column-gap: 30px;
     }
     &__img {
+        border-radius: 6px;
         width: 180px;
         height: 180px;
         object-fit: cover;
@@ -38,11 +41,15 @@
         }
     }
     &__static {
+        height: 100%;
         padding: 40px 35px;
         background-color: $dark;
         position: relative;
+        border-radius: 0 10px 10px 0;
         button {
             margin-top: 13px;
+            position: relative;
+            z-index: 1;
         }
     }
     &__title {
@@ -53,11 +60,62 @@
         color: #FFFFFF;
         &:nth-child(2) {
             margin-top: 33px;
+            position: relative;
+            z-index: 1;
         }
     }
     &__decoration {
         position: absolute;
         bottom: 14px;
         right: -37px;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .randomchar {
+        &__block {
+            padding: 25px 15px;
+        }
+        
+        &__static {
+            padding: 25px 15px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .randomchar {
+        &__block {
+            grid-template-columns: none;
+            justify-content: center;
+        }
+        &__info {
+            grid-template-rows: minmax(29px, auto) minmax(40px, auto) 38px;
+        }
+        &__static {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .randomchar {
+        grid-template-columns: none;
+        &__static {
+            border-radius: 10px 10px 10px 10px;
+        }
+        &__img {
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .randomchar {
+        width: 100%;
     }
 }

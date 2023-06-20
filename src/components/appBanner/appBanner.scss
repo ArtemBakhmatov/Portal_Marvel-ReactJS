@@ -4,6 +4,7 @@
     &__banner {
         width: 100%;
         background-color: $dark;
+        border-radius: 10px;
         height: 100px;
         padding: 0 25px 0 45px;
         display: grid;
@@ -16,5 +17,25 @@
             padding-left: 83px;
             padding-top: 18px;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .app {
+        &__banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 285px;
+            padding: 10px;
+            img {
+                width: 150px;
+            }
+            &-text {
+                text-align: center;
+                padding-left: 0;
+            }
+        }
+        
     }
 }

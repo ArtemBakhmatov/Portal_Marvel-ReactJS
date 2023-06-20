@@ -29,6 +29,15 @@ const AppHeader = () => {
                         Comics
                     </NavLink>
                 </li>
+                    /
+                <li>
+                    <Link 
+                        target='_blank'
+                        to="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0"
+                    >
+                        API
+                    </Link>
+                </li>
                 </ul>
             </nav>
         </header>
