@@ -8,20 +8,28 @@ import {
     SingleComicPage, 
     SinglePage, 
     SingleCharacterLayout, 
-    SingleComicLayout 
+    //SingleComicLayout 
 } from '../pages';
 
 import AppHeader from "../appHeader/AppHeader";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 import Spinner from "../spinner/Spinner";
 
+// eslint-disable-next-line no-unused-vars
 const Page404Lazy = lazy(() => import('../pages/404'));         // ленивая загрузка
-const MainPageLazy = lazy(() => import('../pages/MainPage'));   
+// eslint-disable-next-line no-unused-vars
+const MainPageLazy = lazy(() => import('../pages/MainPage')); 
+// eslint-disable-next-line no-unused-vars  
 const ComicsPageLazy = lazy(() => import('../pages/ComicsPage')); 
+// eslint-disable-next-line no-unused-vars
 const SingleComicPageLazy = lazy(() => import('../pages/SingleComicPage')); 
+// eslint-disable-next-line no-unused-vars
 const SingleComicLayoutLazy = lazy(() => import('../pages/singleComicLayout/SingleComicLayout'));
+// eslint-disable-next-line no-unused-vars
 const SingleCharacterLayoutLazy = lazy(() => import('../pages/singleCharacterLayout/SingleCharacterLayout'));
+// eslint-disable-next-line no-unused-vars
 const SinglePageLazy = lazy(() => import('../pages/SinglePage'));
+// eslint-disable-next-line no-unused-vars
 
 
 const App = () =>  {
